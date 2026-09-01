@@ -81,7 +81,7 @@ app.use(express.static(clientDist));
  * SPA fallback for production (`npm start`). Requires `client/dist` from `vite build`.
  * Without it, `sendFile` fails obscurely; respond with 503 so operators know to build first.
  */
-app.get("*", (_req, res, next) => {
+app.get("/{*path}", (_req, res, next) => {
   const indexPath = path.join(clientDist, "index.html");
   if (!fs.existsSync(indexPath)) {
     res
